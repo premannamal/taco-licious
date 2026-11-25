@@ -41,4 +41,53 @@ public class UserInterface {
             }
         }
     }
+
+    private void displayOrderScreen() {
+        boolean ordering = true;
+        while (ordering) {
+            System.out.println("\n--- CURRENT ORDER ---");
+            if (currentOrder.getItems().isEmpty()) {
+                System.out.println("Cart is currently empty.");
+            } else {
+                for (Orderable item : currentOrder.getItems()) {
+                    System.out.println("- " + item.getDescription());
+                }
+                System.out.printf("Current Subtotal: $%.2f%n", currentOrder.getTotal());
+            }
+
+            System.out.println("\nOrder Menu:");
+            System.out.println("1) Add Taco");
+            System.out.println("2) Add Drink");
+            System.out.println("3) Add Chips & Salsa");
+            System.out.println("4) Checkout");
+            System.out.println("0) Cancel Order");
+            System.out.print("Select an option: ");
+
+            String choice = scanner.nextLine().trim();
+            switch (choice) {
+                case "1":
+                    //processAddTaco();
+                    break;
+                case "2":
+                    //processAddDrink();
+                    break;
+                case "3":
+                    //processAddChipsAndSalsa();
+                    break;
+                case "4":
+                    if (processCheckout()) {
+                        ordering = false;
+                    }
+                    break;
+                case "0":
+                    System.out.println("Order canceled. Returning to Home Screen.");
+                    currentOrder = null;
+                    ordering = false;
+                    break;
+                default:
+                    System.out.println("Invalid option. Please try again.");
+            }
+        }
+    }
+
 }
