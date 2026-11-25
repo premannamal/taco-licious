@@ -66,7 +66,7 @@ public class UserInterface {
             String choice = scanner.nextLine().trim();
             switch (choice) {
                 case "1":
-                    //processAddTaco();
+                    processAddTaco();
                     break;
                 case "2":
                     //processAddDrink();
@@ -212,6 +212,23 @@ public class UserInterface {
             System.out.println("Invalid option. Returning to Order Screen.");
             return false;
         }
+    }
+
+    private void processAddDrink() {
+        System.out.println("\n--- ADD DRINK ---");
+        String size = promptChoice("Select Drink Size", new String[]{"Small", "Medium", "Large"});
+        String flavor = promptChoice("Select Flavor", new String[]{"Horchata", "Jamaica", "Coca-Cola", "Sprite", "Water"});
+
+        currentOrder.addItem(new Drink(size, flavor));
+        System.out.println("Drink added to order!");
+    }
+
+    private void processAddChipsAndSalsa() {
+        System.out.println("\n--- ADD CHIPS & SALSA ---");
+        String salsa = promptChoice("Select Salsa Type", new String[]{"Salsa Verde", "Salsa Roja", "Pico de Gallo", "Habanero"});
+
+        currentOrder.addItem(new ChipsAndSalsa(salsa));
+        System.out.println("Chips & Salsa added to order!");
     }
 
 }
