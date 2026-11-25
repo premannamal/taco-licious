@@ -90,4 +90,29 @@ public class UserInterface {
         }
     }
 
+    private boolean processCheckout() {
+        if (!currentOrder.isValidOrder()) {
+            System.out.println("\n[!] Invalid Order: If you order 0 tacos, you must purchase at least one drink or chips & salsa.");
+            return false;
+        }
+
+        System.out.println("\n" + currentOrder.getOrderSummary());
+        System.out.println("1) Confirm Order");
+        System.out.println("2) Cancel Order");
+        System.out.print("Select an option: ");
+
+        String choice = scanner.nextLine().trim();
+        if (choice.equals("1")) {
+            receiptManager.saveReceipt(currentOrder);
+            System.out.println("Order confirmed! Returning to Home Screen.");
+            return true;
+        } else if (choice.equals("2")) {
+            System.out.println("Order canceled. Returning to Home Screen.");
+            return true;
+        } else {
+            System.out.println("Invalid option. Returning to Order Screen.");
+            return false;
+        }
+    }
+
 }
