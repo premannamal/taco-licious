@@ -90,11 +90,55 @@ public class UserInterface {
         }
     }
 
-    private boolean processCheckout() {
+    private void processAddTaco() {
+        System.out.println("\n--- BUILD YOUR TACO ---");
+        String size = promptChoice("Select Size", new String[]{"Single", "3-Taco", "Burrito"});
+        String shell = promptChoice("Select Shell", new String[]{"Corn", "Flour", "Hard Shell", "Bowl"});
+
+        Taco taco = new Taco(size, shell);
+
+        // 1. Meats
+        addToppingsLoop(taco, "Meat", new String[]{
+                "Carne Asada", "Al Pastor", "Carnitas", "Pollo", "Chorizo", "Pescado"
+        });
+
+        // 2. Cheeses
+        addToppingsLoop(taco, "Cheese", new String[]{
+                "Queso Fresco", "Oaxaca", "Cotija", "Cheddar"
+        });
+
+        // 3. Regular Toppings
+        addToppingsLoop(taco, "Regular", new String[]{
+                "Lettuce", "Cilantro", "Onions", "Tomatoes", "Jalapeños",
+                "Radishes", "Pico de Gallo", "Guacamole", "Corn"
+        });
+        // 4. Sauces
+        addToppingsLoop(taco, "Sauce", new String[]{
+                "Salsa Verde", "Salsa Roja", "Chipotle", "Habanero", "Extra Hot"
+        });
+
+        // 5. Sides
+        addToppingsLoop(taco, "Side", new String[]{
+                "Lime Wedges", "Crema"
+        });
+
+        // 6. Covered in Salsa & Queso
+        System.out.print("Would you like it covered in salsa and queso? (Y/N): ");
+        String coveredInput = scanner.nextLine().trim();
+        taco.setCovered(coveredInput.equalsIgnoreCase("Y"));
+
+        currentOrder.addItem(taco);
+        System.out.println("Taco added to your order!");
+    }
+
+
+        private boolean processCheckout() {
         if (!currentOrder.isValidOrder()) {
             System.out.println("\n[!] Invalid Order: If you order 0 tacos, you must purchase at least one drink or chips & salsa.");
             return false;
         }
+
+
 
         System.out.println("\n" + currentOrder.getOrderSummary());
         System.out.println("1) Confirm Order");
