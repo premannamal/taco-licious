@@ -188,7 +188,6 @@ public class UserInterface {
             System.out.println("Invalid selection. Please try again.");
         }
     }
-}
 
         private boolean processCheckout() {
         if (!currentOrder.isValidOrder()) {
