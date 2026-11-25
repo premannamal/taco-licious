@@ -131,6 +131,24 @@ public class UserInterface {
         System.out.println("Taco added to your order!");
     }
 
+    private String promptChoice(String title, String[] options) {
+        while (true) {
+            System.out.println("\n" + title + ":");
+            for (int i = 0; i < options.length; i++) {
+                System.out.println((i + 1) + ") " + options[i]);
+            }
+            System.out.print("Choice: ");
+            try {
+                int index = Integer.parseInt(scanner.nextLine().trim()) - 1;
+                if (index >= 0 && index < options.length) {
+                    return options[index];
+                }
+            } catch (NumberFormatException ignored) {
+            }
+            System.out.println("Invalid selection. Please try again.");
+        }
+    }
+}
 
         private boolean processCheckout() {
         if (!currentOrder.isValidOrder()) {
