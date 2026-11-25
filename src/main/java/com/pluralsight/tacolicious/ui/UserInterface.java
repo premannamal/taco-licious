@@ -29,8 +29,7 @@ public class UserInterface {
             switch (choice) {
                 case "1":
                     currentOrder = new Order();
-                    //I NEED TO CREATE displayOrderScreen() and uncomment the following line
-                    //displayOrderScreen();
+                    displayOrderScreen();
                     break;
                 case "0":
                     System.out.println("Thank you for visiting TACO-licious! Goodbye.");
@@ -69,10 +68,10 @@ public class UserInterface {
                     processAddTaco();
                     break;
                 case "2":
-                    //processAddDrink();
+                    processAddDrink();
                     break;
                 case "3":
-                    //processAddChipsAndSalsa();
+                    processAddChipsAndSalsa();
                     break;
                 case "4":
                     if (processCheckout()) {
