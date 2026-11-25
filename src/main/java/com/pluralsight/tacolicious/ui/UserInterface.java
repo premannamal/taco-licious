@@ -169,8 +169,6 @@ public class UserInterface {
         }
     }
 
-}
-
     private String promptChoice(String title, String[] options) {
         while (true) {
             System.out.println("\n" + title + ":");
