@@ -131,6 +131,46 @@ public class UserInterface {
         System.out.println("Taco added to your order!");
     }
 
+    private void addToppingsLoop(Taco taco, String category, String[] options) {
+        while (true) {
+            System.out.println("\nSelect " + category + " (or 0 to continue):");
+            for (int i = 0; i < options.length; i++) {
+                System.out.println((i + 1) + ") " + options[i]);
+            }
+            System.out.println("0) Done with " + category);
+            System.out.print("Choice: ");
+
+            String input = scanner.nextLine().trim();
+            if (input.equals("0")) {
+                break;
+            }
+
+            try {
+                int index = Integer.parseInt(input) - 1;
+                if (index >= 0 && index < options.length) {
+                    String selectedName = options[index];
+                    System.out.print("Would you like extra " + selectedName + "? (Y/N): ");
+                    boolean isExtra = scanner.nextLine().trim().equalsIgnoreCase("Y");
+
+                    if (category.equals("Meat")) {
+                        taco.addTopping(new MeatTopping(selectedName, isExtra));
+                    } else if (category.equals("Cheese")) {
+                        taco.addTopping(new CheeseTopping(selectedName, isExtra));
+                    } else {
+                        taco.addTopping(new RegularTopping(selectedName, category, isExtra));
+                    }
+                    System.out.println("Added " + selectedName + (isExtra ? " (Extra)" : ""));
+                } else {
+                    System.out.println("Invalid number.");
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Please enter a valid number.");
+            }
+        }
+    }
+
+}
+
     private String promptChoice(String title, String[] options) {
         while (true) {
             System.out.println("\n" + title + ":");
