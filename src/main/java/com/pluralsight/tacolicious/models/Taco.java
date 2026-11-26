@@ -44,14 +44,6 @@ public class Taco implements Orderable {
     }
 
 
-    public boolean removeTopping(int index) {
-        if (index >= 0 && index < toppings.size()) {
-            toppings.remove(index);
-            return true;
-        }
-        return false;
-    }
-
     public List<Topping> getToppings() {
         return toppings;
     }
