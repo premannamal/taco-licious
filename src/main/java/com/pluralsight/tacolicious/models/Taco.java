@@ -27,18 +27,6 @@ public class Taco implements Orderable {
         return false;
     }
 
-    public List<Topping> getToppings() {
-        return toppings;
-    }
-
-    public void setCovered(boolean covered) {
-        this.isCovered = covered;
-    }
-
-    public boolean isCovered() {
-        return isCovered;
-    }
-
     public void addTopping(Topping topping) {
         toppings.add(topping);
     }
