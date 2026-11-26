@@ -19,13 +19,49 @@ public class Taco implements Orderable {
         this.toppings = new ArrayList<>();
     }
 
+    public boolean removeTopping(int index) {
+        if (index >= 0 && index < toppings.size()) {
+            toppings.remove(index);
+            return true;
+        }
+        return false;
+    }
+
+    public List<Topping> getToppings() {
+        return toppings;
+    }
+
+    public void setCovered(boolean covered) {
+        this.isCovered = covered;
+    }
+
+    public boolean isCovered() {
+        return isCovered;
+    }
+
     public void addTopping(Topping topping) {
         toppings.add(topping);
     }
 
-  //Settor
+
+    public boolean removeTopping(int index) {
+        if (index >= 0 && index < toppings.size()) {
+            toppings.remove(index);
+            return true;
+        }
+        return false;
+    }
+
+    public List<Topping> getToppings() {
+        return toppings;
+    }
+
     public void setCovered(boolean covered) {
         this.isCovered = covered;
+    }
+
+    public boolean isCovered() {
+        return isCovered;
     }
 
     //gettor
@@ -52,11 +88,17 @@ public class Taco implements Orderable {
     }
 
     //gettor
+
+
     @Override
     public String getDescription() {
+        String title = getClass().equals(Taco.class)
+                ? String.format("%s (%s Shell)", size, shell)
+                : String.format("%s - %s (%s Shell)", getClass().getSimpleName(), size, shell);
+
         StringBuilder sb = new StringBuilder();
-        sb.append(String.format("%s (%s Shell)%s - $%.2f",
-                size, shell, isCovered ? " [Covered in Salsa & Queso]" : "", getPrice()));
+        sb.append(String.format("%s%s - $%.2f",
+                title, isCovered ? " [Covered in Salsa & Queso]" : "", getPrice()));
 
         if (!toppings.isEmpty()) {
             String toppingList = toppings.stream()
@@ -69,3 +111,4 @@ public class Taco implements Orderable {
         return sb.toString();
     }
 }
+
