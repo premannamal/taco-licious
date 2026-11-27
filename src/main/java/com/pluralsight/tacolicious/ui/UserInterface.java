@@ -20,7 +20,7 @@ public class UserInterface {
     public void displayHomeScreen() {
         boolean running = true;
         while (running) {
-            System.out.println("\n=== WELCOME TO TACO-LICIOUS ===");
+            System.out.println("\n*** WELCOME TO TACO-LICIOUS ***");
             System.out.println("1) New Order");
             System.out.println("0) Exit");
             System.out.print("Select an option: ");
@@ -44,7 +44,7 @@ public class UserInterface {
     private void displayOrderScreen() {
         boolean ordering = true;
         while (ordering) {
-            System.out.println("\n--- CURRENT ORDER ---");
+            System.out.println("\n*** CURRENT ORDER ***");
             if (currentOrder.getItems().isEmpty()) {
                 System.out.println("Cart is currently empty.");
             } else {
@@ -90,7 +90,7 @@ public class UserInterface {
     }
 
     private void processAddTaco() {
-        System.out.println("\n--- ADD TACO ---");
+        System.out.println("\n*** ADD TACO ***");
         System.out.println("1) Custom Taco");
         System.out.println("2) Signature: Street Tacos");
         System.out.println("3) Signature: Super Burrito");
@@ -177,7 +177,8 @@ public class UserInterface {
     }
 
 
-    private void addToppingsLoop(Taco taco, String category, String[] options) {
+    private void addToppingsLoop(Taco taco, String category, String[] options)
+    {
         while (true) {
             System.out.println("\nSelect " + category + " (or 0 to continue):");
             for (int i = 0; i < options.length; i++) {
@@ -195,16 +196,23 @@ public class UserInterface {
                 int index = Integer.parseInt(input) - 1;
                 if (index >= 0 && index < options.length) {
                     String selectedName = options[index];
-                    System.out.print("Would you like extra " + selectedName + "? (Y/N): ");
-                    boolean isExtra = scanner.nextLine().trim().equalsIgnoreCase("Y");
+
+                    if ( category.equals("Meat") || category.equals("Cheese") )
+                    {
+                        System.out.print("Would you like extra " + selectedName + "? (Y/N): ");
+                        boolean isExtra = scanner.nextLine().trim().equalsIgnoreCase("Y");
+                    }
 
                     if (category.equals("Meat")) {
                         taco.addTopping(new MeatTopping(selectedName, isExtra));
                     } else if (category.equals("Cheese")) {
                         taco.addTopping(new CheeseTopping(selectedName, isExtra));
-                    } else {
+                    }
+                    /*
+                    else {
                         taco.addTopping(new RegularTopping(selectedName, category, isExtra));
                     }
+                    */
                     System.out.println("Added " + selectedName + (isExtra ? " (Extra)" : ""));
                 } else {
                     System.out.println("Invalid number.");
