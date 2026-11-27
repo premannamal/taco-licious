@@ -179,6 +179,7 @@ public class UserInterface {
 
     private void addToppingsLoop(Taco taco, String category, String[] options)
     {
+        boolean isExtra;
         while (true) {
             System.out.println("\nSelect " + category + " (or 0 to continue):");
             for (int i = 0; i < options.length; i++) {
@@ -200,7 +201,11 @@ public class UserInterface {
                     if ( category.equals("Meat") || category.equals("Cheese") )
                     {
                         System.out.print("Would you like extra " + selectedName + "? (Y/N): ");
-                        boolean isExtra = scanner.nextLine().trim().equalsIgnoreCase("Y");
+                        isExtra = scanner.nextLine().trim().equalsIgnoreCase("Y");
+                    }
+                    else
+                    {
+                        isExtra = false;
                     }
 
                     if (category.equals("Meat")) {
@@ -213,7 +218,10 @@ public class UserInterface {
                         taco.addTopping(new RegularTopping(selectedName, category, isExtra));
                     }
                     */
-                    System.out.println("Added " + selectedName + (isExtra ? " (Extra)" : ""));
+                    if ( category.equals("Meat") || category.equals("Cheese") )
+                    {
+                        System.out.println("Added " + selectedName + (isExtra ? " (Extra)" : ""));
+                    }
                 } else {
                     System.out.println("Invalid number.");
                 }
