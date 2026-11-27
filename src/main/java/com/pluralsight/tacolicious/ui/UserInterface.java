@@ -302,7 +302,7 @@ public class UserInterface {
     }
 
     private void processAddDrink() {
-        System.out.println("\n--- ADD DRINK ---");
+        System.out.println("\n*** ADD DRINK ***");
         String size = promptChoice("Select Drink Size", new String[]{"Small", "Medium", "Large"});
         String flavor = promptChoice("Select Flavor", new String[]{"Horchata", "Jamaica", "Coca-Cola", "Sprite", "Water"});
 
@@ -311,7 +311,7 @@ public class UserInterface {
     }
 
     private void processAddChipsAndSalsa() {
-        System.out.println("\n--- ADD CHIPS & SALSA ---");
+        System.out.println("\n*** ADD CHIPS & SALSA ***");
         String salsa = promptChoice("Select Salsa Type", new String[]{"Salsa Verde", "Salsa Roja", "Pico de Gallo", "Habanero"});
 
         currentOrder.addItem(new ChipsAndSalsa(salsa));
