@@ -98,7 +98,7 @@ public class UserInterface {
         System.out.print("Select an option: ");
 
         String choice = scanner.nextLine().trim();
-        Taco taco;
+        Taco taco = null;
 
         do {
             validChoice = true;
@@ -207,8 +207,19 @@ public class UserInterface {
 
                     if ( category.equals("Meat") || category.equals("Cheese") )
                     {
-                        System.out.print("Would you like extra " + selectedName + "? (Y/N): ");
-                        isExtra = scanner.nextLine().trim().equalsIgnoreCase("Y");
+                        while (true)
+                        {
+                            System.out.print("Would you like extra " + selectedName + "? (Y/N): ");
+                            input = scanner.nextLine().trim();
+                            if (input.equalsIgnoreCase("Y") || input.equalsIgnoreCase("N"))
+                            {
+                                isExtra = input.equalsIgnoreCase("Y")
+                                break; // Valid input ('y', 'Y', 'n', or 'N')
+                            } else
+                            {
+                                System.out.println("Invalid input. Please enter Y or N.");
+                            }
+                        }
                     }
                     else
                     {
