@@ -90,6 +90,7 @@ public class UserInterface {
     }
 
     private void processAddTaco() {
+        boolean validChoice = false;
         System.out.println("\n*** ADD TACO ***");
         System.out.println("1) Custom Taco");
         System.out.println("2) Signature: Street Tacos");
@@ -99,23 +100,29 @@ public class UserInterface {
         String choice = scanner.nextLine().trim();
         Taco taco;
 
-        switch (choice) {
-            case "2":
-                taco = new com.pluralsight.tacolicious.models.signatures.StreetTacos();
-                customizeSignatureTaco(taco);
-                break;
-            case "3":
-                taco = new com.pluralsight.tacolicious.models.signatures.SuperBurrito();
-                customizeSignatureTaco(taco);
-                break;
-            case "1":
-            default:
-                String size = promptChoice("Select Size", new String[]{"Single", "3-Taco", "Burrito"});
-                String shell = promptChoice("Select Shell", new String[]{"Corn", "Flour", "Hard Shell", "Bowl"});
-                taco = new Taco(size, shell);
-                addAllToppingsFlow(taco);
-                break;
-        }
+        do {
+            validChoice = true;
+            switch (choice) {
+                case "2":
+                    taco = new com.pluralsight.tacolicious.models.signatures.StreetTacos();
+                    customizeSignatureTaco(taco);
+                    break;
+                case "3":
+                    taco = new com.pluralsight.tacolicious.models.signatures.SuperBurrito();
+                    customizeSignatureTaco(taco);
+                    break;
+                case "1":
+                    String size = promptChoice("Select Size", new String[]{"Single", "3-Taco", "Burrito"});
+                    String shell = promptChoice("Select Shell", new String[]{"Corn", "Flour", "Hard Shell", "Bowl"});
+                    taco = new Taco(size, shell);
+                    addAllToppingsFlow(taco);
+                    break;
+                default:
+                    System.out.println("Invalid option. Please enter 1, 2, or 3.");
+                    validChoice = false; // Keeps the loop running
+                    break;
+            }
+        } while (!validChoice);
 
         currentOrder.addItem(taco);
         System.out.println("Taco added to your order!");
