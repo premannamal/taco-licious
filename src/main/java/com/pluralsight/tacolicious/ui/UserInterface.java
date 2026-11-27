@@ -277,7 +277,7 @@ public class UserInterface {
                 input = scanner.nextLine().trim();
                 if (input.equalsIgnoreCase("Y") || input.equalsIgnoreCase("N"))
                 {
-                    taco.setCovered(scanner.nextLine().trim().equalsIgnoreCase("Y"));
+                    taco.setCovered(input.equalsIgnoreCase("Y"));
                     break; // Valid input ('y', 'Y', 'n', or 'N')
                 }
                 else
