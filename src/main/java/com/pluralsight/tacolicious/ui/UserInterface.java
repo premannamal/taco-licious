@@ -213,7 +213,7 @@ public class UserInterface {
                             input = scanner.nextLine().trim();
                             if (input.equalsIgnoreCase("Y") || input.equalsIgnoreCase("N"))
                             {
-                                isExtra = input.equalsIgnoreCase("Y")
+                                isExtra = input.equalsIgnoreCase("Y");
                                 break; // Valid input ('y', 'Y', 'n', or 'N')
                             } else
                             {
