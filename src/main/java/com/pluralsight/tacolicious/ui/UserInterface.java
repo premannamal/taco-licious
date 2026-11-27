@@ -249,7 +249,9 @@ public class UserInterface {
         }
     }
 
-    private void addAllToppingsFlow(Taco taco) {
+    private void addAllToppingsFlow(Taco taco)
+    {
+        String input;
         addToppingsLoop(taco, "Meat", new String[]{
                 "Carne Asada", "Al Pastor", "Carnitas", "Pollo", "Chorizo", "Pescado"
         });
@@ -269,8 +271,23 @@ public class UserInterface {
 
         // Only prompt for "covered" automatically if building a custom Taco from scratch
         if (taco.getClass().equals(Taco.class)) {
-            System.out.print("Would you like it covered in salsa and queso? (Y/N): ");
-            taco.setCovered(scanner.nextLine().trim().equalsIgnoreCase("Y"));
+            while(true)
+            {
+                System.out.print("Would you like it covered in salsa and queso? (Y/N): ");
+                input = scanner.nextLine().trim();
+                if (input.equalsIgnoreCase("Y") || input.equalsIgnoreCase("N"))
+                {
+                    taco.setCovered(scanner.nextLine().trim().equalsIgnoreCase("Y"));
+                    break; // Valid input ('y', 'Y', 'n', or 'N')
+                }
+                else
+                {
+                    System.out.println("Invalid input. Please enter Y or N.");
+                }
+            }
+
+            /* System.out.print("Would you like it covered in salsa and queso? (Y/N): ");
+            taco.setCovered(scanner.nextLine().trim().equalsIgnoreCase("Y"));   */
         }
     }
 
